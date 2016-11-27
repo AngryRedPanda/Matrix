@@ -1,31 +1,91 @@
+import java.util.regex.Pattern;
 
 public class Matrix {
-
     int n, m;
-    public int arr[][];
+    double arr[][];
 
     Matrix() {
-        int arr[] = new int[1];
-        arr[0] = 0;
+        this.n = 1;
+        this.arr = new double[1][1];
+        this.arr[0][0] = 0;
     }
 
-    Matrix(int n) {
-        int arr[][] = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                arr[i][j] = 0;
-            }
+    Matrix(int a) {
+        this.n = a;
+        this.m = a;
+        this.arr = new double[this.n][this.m];
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.n; j++) this.arr[i][j] = 2;
         }
     }
 
-    Matrix(int n, int m) {
-        int arr[][] = new int[n][m];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                arr[i][j] = 0;
-            }
+    Matrix(int a, int b) {
+        this.n = a;
+        this.m = b;
+        this.arr = new double[this.n][this.m];
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.m; j++) this.arr[i][j] = 0;
         }
     }
 
+    Matrix(double arr[][]) {
+        this.n = arr.length;
+        this.m = arr[0].length;
+        this.arr = new double[this.n][this.m];
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.m; j++) this.arr[i][j] = arr[i][j];
+        }
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Martrix { \n");
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.m; j++) {
+                sb.append(j + 1 + "." + (int) this.arr[i][j] + " ");
+            }
+            sb.append("\n");
+        }
+        sb.append("}");
+        return (sb.toString());
+    }
+
+    Matrix sum(Matrix a) {
+        if (this.n == a.n && this.m == a.m) {
+            for (int i = 0; i < this.n; i++) {
+                for (int j = 0; j < this.m; j++) {
+                    this.arr[i][j] += a.arr[i][j];
+                }
+            }
+            return (new Matrix(this.arr));
+        } else {
+            return null;
+        }
+    }
+
+    Matrix mult(int a) {
+
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.m; j++) {
+                this.arr[i][j] *= a;
+            }
+        }
+        return (new Matrix(this.arr));
+    }
+
+    Matrix mult(Matrix a) {
+        if (this.m == a.n) {
+            double newArr[][] = new double[this.n][a.m];
+            for (int i = 0; i < this.n; i++) {
+                for (int j = 0; j < a.m; j++) {
+                    for (int k = 0, l = 0; k < this.m || l < a.n; k++, l++)
+                        newArr[i][j] += this.arr[i][k] * a.arr[l][i];
+                }
+            }
+            return (new Matrix(newArr));
+        } else {
+            return null;
+        }
+    }
 
 }
