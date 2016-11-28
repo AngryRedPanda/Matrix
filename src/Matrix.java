@@ -1,6 +1,8 @@
 import java.util.regex.Pattern;
 
 public class Matrix {
+
+    static final int ln = 3;
     int n, m;
     double arr[][];
 
@@ -39,7 +41,7 @@ public class Matrix {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Martrix { \n");
+        sb.append("Matrix { \n");
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.m; j++) {
                 sb.append(j + 1 + "." + (int) this.arr[i][j] + " ");
@@ -87,5 +89,39 @@ public class Matrix {
             return null;
         }
     }
+/*
+    Matrix inv () {
 
+    }
+*/
+
+/*
+Matrix det () {
+
+}
+ */
+
+    static Matrix getIndentMatrix(int n) {
+        double arr[][] = new double[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) arr[i][j] = 1;
+        }
+        return new Matrix(arr);
+    }
+
+    static Matrix getNullMatrix(int n, int m) {
+        double arr[][] = new double[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) arr[i][j] = 0;
+        }
+        return new Matrix(arr);
+    }
+
+    static Matrix getIndentMatrix() {
+        double arr[][] = new double[ln][ln];
+        for (int i = 0; i < ln; i++) {
+            for (int j = 0; j < ln; j++) arr[i][j] = 1;
+        }
+        return new Matrix(arr);
+    }
 }
