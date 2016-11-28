@@ -1,10 +1,12 @@
 import java.util.regex.Pattern;
+import java.util.Scanner;
 
 public class Matrix {
 
     static final int ln = 3;
     int n, m;
     double arr[][];
+    Scanner sc = new Scanner(System.in);
 
     Matrix() {
         this.n = 1;
@@ -17,7 +19,7 @@ public class Matrix {
         this.m = a;
         this.arr = new double[this.n][this.m];
         for (int i = 0; i < this.n; i++) {
-            for (int j = 0; j < this.n; j++) this.arr[i][j] = 2;
+            for (int j = 0; j < this.n; j++) this.arr[i][j] = sc.nextInt();
         }
     }
 
@@ -89,11 +91,15 @@ public class Matrix {
             return null;
         }
     }
-/*
-    Matrix inv () {
 
+    Matrix inv() {
+        double newArr[][] = new double[this.n][this.m];
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.m; j++)
+                newArr[i][j] = this.arr[this.arr[i].length - i - 1][this.arr.length - j - 1];
+        }
+        return new Matrix(newArr);
     }
-*/
 
 /*
 Matrix det () {
