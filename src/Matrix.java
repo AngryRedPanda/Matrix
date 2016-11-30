@@ -129,6 +129,8 @@ Matrix det () {
         }
         return new Matrix(arr);
     }
+    
+    static final int ln = 3;
 }
 
-    static final int ln = 3;
+    
