@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Matrix {
 
-    static final int ln = 3;
     int n, m;
     double arr[][];
     Scanner sc = new Scanner(System.in);
@@ -131,3 +130,5 @@ Matrix det () {
         return new Matrix(arr);
     }
 }
+
+    static final int ln = 3;
